@@ -113,3 +113,7 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+EDITOR=nvim
+VISUAL=$EDITOR
+export EDITOR VISUAL
