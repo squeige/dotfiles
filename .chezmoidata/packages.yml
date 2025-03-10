@@ -1,9 +1,0 @@
-packages:
-  debian:
-    apt:
-      - 'git'
-      - 'curl'
-      - 'gcc'
-      - 'unzip'
-      - 'tar'
-      - 'htop'
