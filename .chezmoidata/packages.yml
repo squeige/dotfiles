@@ -1,0 +1,6 @@
+packages:
+  debian:
+    apt:
+      - htop
+      - man-db
+      - git
