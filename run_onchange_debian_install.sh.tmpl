@@ -1,0 +1,16 @@
+{{- if eq .chezmoi.arch "amd64" }}
+{{- if eq .chezmoi.osRelease.id "debian" -}}
+#!/bin/bash
+echo " !!! I found {{ .chezmoi.osRelease.id }} running on {{ .chezmoi.arch }} I will proceed to install }} !!!"
+sudo apt update
+
+
+# Ensure Nvim is installed
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+sudo rm ~/nvim-linux-x86_64.tar.gz
+
+
+{{ end }}
+{{ end }}

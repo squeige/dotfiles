@@ -1,0 +1,12 @@
+packages:
+  debian:
+    apt:
+      - git
+      - gcc
+      - make
+      - unzip
+      - tar
+      - ripgrep
+      - xclip
+      - curl
+      - wget
