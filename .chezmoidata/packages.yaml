@@ -1,0 +1,10 @@
+# Define packages for Debian-based systems
+debian:
+  apt:
+    # List of packages to install using apt
+    - git
+    - gpg
+    - curl
+    - wget
+    - unzip
+    - tar

@@ -1,0 +1,28 @@
+#!/bin/bash
+# ~/.local/share/chezmoi/run_once_install-packages.sh.tmpl
+# This script installs packages based on the operating system detected by Chezmoi.
+# Exit immediately if a command exits with a non-zero status.
+set -euo pipefail
+echo "Installing packages..."
+# Check if the current OS is Debian
+{{ if eq .chezmoi.os "linux" -}}
+  # Check if the distribution is Debian-based (e.g., Debian, Ubuntu)
+  # You might want more robust checks here, like checking /etc/os-release
+  # For simplicity, we'll assume any 'linux' OS that uses 'apt' is covered by 'debian' config.
+  if command -v apt &> /dev/null; then
+    echo "Detected Debian-based system (using apt)."
+    # Update package lists
+    sudo apt update
+    # Install packages listed under debian.apt in packages.yaml
+    # The .packages.debian.apt refers to the data defined in packages.yaml
+    # The `join " "` converts the YAML list into a space-separated string
+    sudo apt install -y {{ join " " .packages.debian.apt }}
+    echo "Debian packages installed."
+  else
+    echo "Skipping package installation: apt not found or not a Debian-based system."
+  fi
+{{- else -}}
+  echo "Skipping package installation: Not a Linux system."
+{{- end }}
+
+echo "Package installation script finished."
