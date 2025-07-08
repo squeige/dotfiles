@@ -1,0 +1,9 @@
+Host *
+    Port 4545
+    User luigi
+
+Host int_thelair
+    HostName 10.10.0.100 
+
+Host thelair
+    HostName 10.69.69.2
