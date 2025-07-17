@@ -1,9 +1,12 @@
-Host *
-    Port 4545
-    User luigi
+Host github.com
+    HostName github.com
+    Port 22
 
 Host int_thelair
     HostName 10.10.0.100 
 
 Host thelair
     HostName 10.69.69.2
+Host *
+    Port 4545
+    User luigi
