@@ -1,0 +1,18 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -euo pipefail
+
+# This block runs on Linux-based systems (including WSL).
+{{ if .chezmoi.kernel.osrelease | contains "microsoft" -}}
+
+echo "Detected Linux running on WSL."
+
+{{- else -}}
+echo "Detected a standard Linux system (e.g., native Ubuntu, Fedora)."
+# Add your standard Linux commands here
+{{- end -}}
+echo "Linux-specific setup complete."
+
+{{ end -}}
