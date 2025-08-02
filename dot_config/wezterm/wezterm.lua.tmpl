@@ -1,0 +1,35 @@
+{{- if eq .chezmoi.os "windows" -}}
+local wezterm = require 'wezterm'
+local config = {}
+
+config.font = wezterm.font 'JetBrains Mono'
+config.font_size= 14.0
+config.color_scheme = 'Matrix (terminal.sexy)'
+config.keys = {
+  { key = '`', mods = 'ALT', action = wezterm.action.ShowLauncher },
+  {
+    key = '1',
+    mods = 'ALT',
+    action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|DOMAINS' },
+  },
+}
+
+return config
+{{- else -}}
+local wezterm = require 'wezterm'
+local config = {}
+
+config.font = wezterm.font 'JetBrains Mono'
+config.font_size= 18.0
+config.color_scheme = 'Matrix (terminal.sexy)'
+config.keys = {
+  { key = '`', mods = 'ALT', action = wezterm.action.ShowLauncher },
+  {
+    key = '1',
+    mods = 'ALT',
+    action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|DOMAINS' },
+  },
+}
+
+return config
+{{- end -}}
