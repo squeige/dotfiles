@@ -8,6 +8,7 @@ set -euo pipefail
 {{ if .chezmoi.kernel.osrelease | contains "microsoft" -}}
 
 echo "Detected Linux running on WSL."
+{{- template "debian_apt.sh.tmpl" . -}}
 
 {{- else -}}
 echo "Detected a standard Linux system (e.g., native Ubuntu, Fedora)."

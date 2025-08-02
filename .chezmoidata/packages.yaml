@@ -1,0 +1,15 @@
+# Define packages for Debian-based systems
+packages:
+        debian:
+          apt:
+            # List of packages to install using apt
+            - git
+            - openssh-client
+            - gpg
+            - curl
+            - wget
+            - unzip
+            - tar
+            - gcc
+            - tmux
+
