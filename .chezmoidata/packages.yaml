@@ -12,3 +12,8 @@ packages:
             - tar
             - gcc
             - tmux
+        windows:
+          chocolatey:
+            - git
+            - wezterm
+            - neovim
