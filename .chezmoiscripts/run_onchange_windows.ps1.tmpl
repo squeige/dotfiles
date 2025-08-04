@@ -1,0 +1,42 @@
+{{- if eq .chezmoi.os "windows" -}}
+
+# Get the current execution policy for the current user.
+$currentPolicy = Get-ExecutionPolicy -Scope CurrentUser
+
+# Only run if the policy is NOT already set to RemoteSigned.
+if ($currentPolicy -ne "RemoteSigned") {
+    Write-Host "Setting PowerShell execution policy to RemoteSigned..."
+    # Set the policy and force a yes, so there is no user prompt.
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+    Write-Host "Execution policy has been set."
+} else {
+    Write-Host "PowerShell execution policy is already set to RemoteSigned."
+}
+
+# Check if Chocolatey is installed. If not, don't run.
+if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
+    Write-Host "Chocolatey is not installed. Skipping package installation."
+    exit 0
+}
+
+Write-Host "Upgrading all Chocolatey packages..."
+choco upgrade all --yes
+
+Write-Host "Checking for any missing packages from your dotfiles..."
+
+# Loop through the list of packages from the packages.yaml file
+{{- range .packages.windows.chocolatey }}
+$package = "{{ . }}"
+Write-Host "Checking for package $package..."
+
+if ((choco list --local-only | Select-String -Pattern "^$package" -Quiet)) {
+    Write-Host "$package is already installed and up-to-date."
+} else {
+    Write-Host "Installing $package..."
+    choco install $package --yes
+}
+{{- end }}
+
+Write-Host "Finished managing Chocolatey packages."
+{{- end -}}
+

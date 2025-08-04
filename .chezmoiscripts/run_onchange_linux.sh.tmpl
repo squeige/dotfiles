@@ -6,8 +6,9 @@ echo "Setting up Linux"
 # Setting up WSL
 {{ if and (eq .chezmoi.osRelease.id "debian") (contains "microsoft" .chezmoi.kernel.osrelease) }}
 echo "Debian running on WSL detected, setting up"
+mkdir -p ~/downloads/
 {{ template "debian_apt.sh.tmpl" . }}
-{{ template "nvim_linux_64.sh.tmpl" . }}
+{{ template "nvim_linux_64.sh.tmpl" }}
 {{ end }}
 # End wsl
 

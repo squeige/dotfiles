@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.os "linux" }} 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -111,3 +112,15 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Check for tmux and start session
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
+
+# Set nvim as default editor
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+{{ end }}
