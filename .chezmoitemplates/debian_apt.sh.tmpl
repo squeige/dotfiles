@@ -1,0 +1,10 @@
+{{ $aptPackages := .packages.debian.apt.wsl }}
+{{ if $aptPackages }}
+echo "Updating package lists..."
+sudo apt update -y # Add -y for non-interactive update
+echo "Installing the following packages: {{ join " " $aptPackages }}"
+sudo apt install -y {{ join " " $aptPackages }}
+{{ else }}
+echo "No Debian APT packages defined in .chezmoidata/packages.yaml. Skipping installation."
+{{ end }}
+echo "Package installation script finished."

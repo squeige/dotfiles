@@ -1,0 +1,13 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+set -euo pipefail
+echo "Setting up Linux"
+
+# Setting up WSL
+{{ if and (eq .chezmoi.osRelease.id "debian") (contains "microsoft" .chezmoi.kernel.osrelease) }}
+echo "Debian running on WSL detected, setting up"
+{{ template "debian_apt.sh.tmpl" . }}
+{{ end }}
+# End wsl
+
+{{ end }}

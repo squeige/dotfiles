@@ -1,0 +1,19 @@
+packages:
+        debian:
+          apt:
+            wsl:
+                # List of packages to install using apt
+                - git
+                - openssh-client
+                - gpg
+                - curl
+                - wget
+                - unzip
+                - tar
+                - gcc
+                - tmux
+        windows:
+          chocolatey:
+            - git
+            - wezterm
+            - neovim
