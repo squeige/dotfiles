@@ -12,6 +12,8 @@ packages:
                 - tar
                 - gcc
                 - tmux
+                - ripgrep
+                - fd-find
         windows:
           chocolatey:
             - git
